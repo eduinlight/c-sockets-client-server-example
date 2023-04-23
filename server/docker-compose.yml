@@ -1,0 +1,29 @@
+version: "3.7"
+
+services:
+  api:
+    image: 'c-socket-server'
+    container_name: "c-socket-server"
+    build:
+      context: .
+      target: dev
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
+    working_dir: /home/user/app
+    stdin_open: true
+    tty: true
+    command: bash
+    user: ${UID:-1000}:${GID:-1000}
+    environment:
+      - PORT=${PORT:-3000}
+    volumes:
+      - .:/home/user/app
+    ports:
+      - ${PORT:-3000}:${PORT:-3000}
+    networks:
+      - server
+
+networks:
+  server:
+    name: c-socket-server
