@@ -1,6 +1,6 @@
 FROM archlinux:latest as dev
-RUN pacman -Sy --noconfirm clang cmake make &&\
-    sudo pacman -Scc
+RUN pacman -Sy --noconfirm clang cmake make && \
+    pacman -Scc
 ARG UID 
 ARG GID 
 RUN if [ $(getent group $GID) ]; then groupdel -f `getent group $GID | cut -d: -f1`; fi \

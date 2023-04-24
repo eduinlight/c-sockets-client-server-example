@@ -12,6 +12,6 @@ configure:
 run:
 	./out/build/acm
 docker:
-	docker exec -it c-socket-server bash
+	docker exec -it c-socket-client bash
 clean:
 	rm -rf ./out
